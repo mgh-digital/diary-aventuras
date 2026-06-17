@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Diario de Aventuras ✦</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght=0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   :root {
@@ -31,7 +31,6 @@
   }
   body { padding-bottom: env(safe-area-inset-bottom); }
 
-  /* ── Ambient glows ── */
   .glow-rose {
     position: fixed; top: -15%; right: -10%;
     width: 60vw; height: 60vw; max-width: 380px; max-height: 380px;
@@ -44,26 +43,7 @@
     background: radial-gradient(circle, rgba(156,100,180,.07) 0%, transparent 70%);
     pointer-events: none; z-index: 0;
   }
-  .glow-gold {
-    position: fixed; bottom: 30%; right: -5%;
-    width: 35vw; height: 35vw; max-width: 200px; max-height: 200px;
-    background: radial-gradient(circle, rgba(229,193,177,.06) 0%, transparent 70%);
-    pointer-events: none; z-index: 0;
-  }
 
-  /* ── Floating stars ── */
-  .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-  .star {
-    position: absolute; border-radius: 50%;
-    background: var(--gold); opacity: 0;
-    animation: twinkle var(--d, 4s) var(--delay, 0s) ease-in-out infinite;
-  }
-  @keyframes twinkle {
-    0%, 100% { opacity: 0; transform: scale(.6); }
-    50%       { opacity: var(--op, .35); transform: scale(1); }
-  }
-
-  /* ── Glass card ── */
   .glass {
     background: var(--card-bg);
     backdrop-filter: blur(20px);
@@ -73,59 +53,39 @@
     box-shadow: 0 2px 32px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.04);
   }
 
-  /* ── Sliders ── */
-  input[type=range] {
-    -webkit-appearance: none; appearance: none;
-    width: 100%; height: 3px; border-radius: 99px;
-    outline: none; cursor: pointer;
-  }
-  input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none; appearance: none;
-    width: 22px; height: 22px; border-radius: 50%;
-    background: var(--rose);
-    box-shadow: 0 0 0 3px rgba(232,167,182,.22), 0 2px 10px rgba(0,0,0,.5);
-    cursor: pointer; transition: transform .15s ease;
-  }
-  input[type=range]:active::-webkit-slider-thumb { transform: scale(1.2); }
-  .slider-sage  { background: linear-gradient(to right, var(--sage)  var(--pct), rgba(255,255,255,.08) var(--pct)); }
-  .slider-rose  { background: linear-gradient(to right, var(--rose)  var(--pct), rgba(255,255,255,.08) var(--pct)); }
-  .slider-gold  { background: linear-gradient(to right, var(--gold)  var(--pct), rgba(255,255,255,.08) var(--pct)); }
-
-  /* ── Textarea ── */
-  textarea {
+  select, input, textarea {
     background: rgba(255,255,255,.03);
     border: 1px solid rgba(229,193,177,.10);
     border-radius: .875rem; color: var(--cream);
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    font-size: .875rem; resize: none; outline: none;
-    transition: border-color .2s;
-    line-height: 1.6;
+    outline: none; transition: all .2s;
   }
-  textarea:focus { border-color: rgba(232,167,182,.4); }
-  textarea::placeholder { color: var(--muted); font-style: italic; }
+  select:focus, input:focus, textarea:focus { border-color: rgba(232,167,182,.4); }
+  textarea::placeholder, input::placeholder { color: var(--muted); font-style: italic; }
 
-  /* ── Metric inputs ── */
-  .metric-input {
+  .btn-check {
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.75rem 1rem; border-radius: 0.875rem;
     background: rgba(255,255,255,.03);
     border: 1px solid rgba(229,193,177,.10);
-    border-radius: .75rem; color: var(--cream);
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    font-size: 1rem; font-weight: 600;
-    width: 100%; text-align: center; outline: none;
-    padding: .6rem .25rem;
-    transition: border-color .2s;
+    font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: all 0.2s;
   }
-  .metric-input:focus { border-color: rgba(156,182,159,.45); }
-  .metric-input::-webkit-inner-spin-button,
-  .metric-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+  .btn-check.active {
+    background: rgba(232,167,182,.12); color: var(--rose);
+    border-color: rgba(232,167,182,.35);
+    box-shadow: 0 0 12px rgba(232,167,182,0.1);
+  }
 
-  /* ── Section label ── */
+  .emoji-btn {
+    font-size: 1.75rem; opacity: 0.35; filter: grayscale(40%); transition: all 0.15s; cursor: pointer;
+  }
+  .emoji-btn.active { opacity: 1; filter: grayscale(0%); transform: scale(1.2); }
+
   .section-label {
-    font-size: .62rem; font-weight: 600; letter-spacing: .12em;
-    text-transform: uppercase; color: var(--muted); margin-bottom: .65rem;
+    font-size: .65rem; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 0.9rem;
   }
 
-  /* ── Submit button ── */
   .btn-submit {
     background: linear-gradient(135deg, rgba(232,167,182,.85) 0%, rgba(229,193,177,.75) 100%);
     color: #1a0e18; font-weight: 700; font-size: .95rem;
@@ -137,12 +97,6 @@
   .btn-submit:active { transform: scale(.97); opacity: .88; }
   .btn-submit:disabled { opacity: .55; cursor: not-allowed; }
 
-  /* ── AI result ── */
-  .result-card { display: none; }
-  .result-card.visible { display: block; animation: fadeUp .5s cubic-bezier(.22,.68,0,1.2); }
-  @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-
-  /* ── Spinner ── */
   @keyframes spin { to { transform: rotate(360deg); } }
   .spinner {
     display: inline-block; width: 16px; height: 16px;
@@ -151,34 +105,7 @@
     vertical-align: middle; margin-right: 8px;
   }
 
-  /* ── Badges ── */
-  .badge {
-    display: inline-flex; align-items: center; gap: .35rem;
-    padding: .28rem .7rem; border-radius: 99px;
-    font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-  }
-  .badge-critical { background: rgba(232,167,182,.12); color: var(--rose);  border: 1px solid rgba(232,167,182,.22); }
-  .badge-inflam   { background: rgba(229,193,177,.12); color: var(--gold);  border: 1px solid rgba(229,193,177,.22); }
-  .badge-optimal  { background: rgba(156,182,159,.12); color: var(--sage);  border: 1px solid rgba(156,182,159,.22); }
-  .badge-standard { background: rgba(250,246,240,.06); color: var(--muted); border: 1px solid rgba(250,246,240,.10); }
-
-  /* ── Divider ── */
-  .divider { height: 1px; background: rgba(229,193,177,.07); margin: 1.1rem 0; }
-
-  /* ── Plan item ── */
-  .plan-item {
-    display: flex; gap: .85rem; align-items: flex-start;
-    padding: .85rem 0;
-    border-bottom: 1px solid rgba(229,193,177,.06);
-  }
-  .plan-item:last-child { border-bottom: none; }
-  .plan-icon {
-    font-size: 1.15rem; flex-shrink: 0; margin-top: .05rem;
-    width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
-    background: rgba(229,193,177,.08); border-radius: .6rem;
-  }
-
-  /* ── Decorative header line ── */
+  .divider { height: 1px; background: rgba(229,193,177,.07); margin: 1.25rem 0; }
   .header-deco { display: flex; align-items: center; gap: .5rem; }
   .header-deco::before, .header-deco::after {
     content: ''; flex: 1; height: 1px;
@@ -188,11 +115,8 @@
 </head>
 <body>
 
-<!-- Ambient -->
 <div class="glow-rose"></div>
 <div class="glow-purple"></div>
-<div class="glow-gold"></div>
-<div class="stars" id="starsContainer"></div>
 
 <div class="relative z-10 px-4 pt-16 pb-14 max-w-md mx-auto">
 
@@ -203,282 +127,250 @@
     </p>
     <div class="text-3xl mb-2">🌿</div>
     <h1 class="text-2xl font-bold leading-tight" style="color:var(--cream)">Diario de Aventuras</h1>
-    <p class="text-sm mt-1.5 font-light italic" style="color:var(--muted)">Fuerza · Trail · Equilibrio</p>
+    <p class="text-sm mt-1.5 font-light italic" style="color:var(--muted)">Bitácora Semanal de Rendimiento</p>
   </div>
 
-  <!-- Form -->
   <form id="checkinForm" onsubmit="handleSubmit(event)">
 
-    <!-- Composición corporal -->
+    <!-- BLOQUE 1: COMPOSICIÓN CORPORAL -->
     <div class="glass p-5 mb-3">
-      <p class="section-label">✦ Composición corporal</p>
+      <p class="section-label">⚖️ Composición Corporal</p>
       <div class="grid grid-cols-2 gap-3">
         <div>
-          <p class="text-xs mb-1.5" style="color:var(--muted)">Peso <span style="opacity:.6">kg</span></p>
-          <input class="metric-input" type="number" id="peso" placeholder="72.5" step="0.1" min="30" max="250">
+          <label class="text-xs block mb-1.5" style="color:var(--muted)">Peso (kg)</label>
+          <input type="number" id="peso" step="0.1" placeholder="62.5" class="w-full p-2.5 text-sm text-center" required>
         </div>
         <div>
-          <p class="text-xs mb-1.5" style="color:var(--muted)">IMC</p>
-          <input class="metric-input" type="number" id="imc" placeholder="22.4" step="0.1" min="10" max="60">
+          <label class="text-xs block mb-1.5" style="color:var(--muted)">Altura (cm) <span class="opacity-50">(para IMC)</span></label>
+          <input type="number" id="altura" placeholder="165" value="165" class="w-full p-2.5 text-sm text-center" required>
         </div>
         <div>
-          <p class="text-xs mb-1.5" style="color:var(--muted)">% Grasa</p>
-          <input class="metric-input" type="number" id="grasa" placeholder="14.0" step="0.1" min="3" max="60">
+          <label class="text-xs block mb-1.5" style="color:var(--muted)">% Grasa</label>
+          <input type="number" id="grasa" step="0.1" placeholder="22.4" class="w-full p-2.5 text-sm text-center">
         </div>
         <div>
-          <p class="text-xs mb-1.5" style="color:var(--muted)">% Músculo</p>
-          <input class="metric-input" type="number" id="musculo" placeholder="44.0" step="0.1" min="10" max="70">
+          <label class="text-xs block mb-1.5" style="color:var(--muted)">% Músculo</label>
+          <input type="number" id="musculo" step="0.1" placeholder="38.2" class="w-full p-2.5 text-sm text-center">
         </div>
       </div>
     </div>
 
-    <!-- Sliders -->
+    <!-- BLOQUE 2: SALUD, ENERGÍA Y CICLO -->
     <div class="glass p-5 mb-3">
-      <p class="section-label">🌙 Estado de la semana</p>
-
-      <div class="space-y-5">
-        <!-- Estrés -->
+      <p class="section-label">🩺 Salud, Energía y Ciclo</p>
+      <div class="space-y-4">
         <div>
-          <div class="flex justify-between items-center mb-2.5">
-            <p class="text-sm font-medium">Estrés global</p>
-            <span class="text-sm font-bold" style="color:var(--gold)" id="stressVal">5</span>
-          </div>
-          <input type="range" id="estres" min="1" max="10" value="5" class="slider-gold"
-                 oninput="updateSlider(this,'stressVal','gold')">
-          <div class="flex justify-between mt-1.5">
-            <span class="text-xs" style="color:var(--muted)">☁️ Sereno</span>
-            <span class="text-xs" style="color:var(--muted)">⚡ Intenso</span>
-          </div>
+          <button type="button" id="menstruacionBtn" class="w-full btn-check" onclick="toggleActive(this)">
+            🩸 Estoy con la Menstruación esta semana
+          </button>
         </div>
-
-        <div class="divider"></div>
-
-        <!-- Descanso -->
-        <div>
-          <div class="flex justify-between items-center mb-2.5">
-            <p class="text-sm font-medium">Calidad de descanso</p>
-            <span class="text-sm font-bold" style="color:var(--sage)" id="restVal">7</span>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs block mb-1.5" style="color:var(--muted)">Calidad del Sueño</label>
+            <select id="sueno" class="w-full p-2.5 text-sm">
+              <option value="Reparador">🌿 Reparador</option>
+              <option value="Interrumpido">🌙 Interrumpido</option>
+              <option value="Insuficiente">🥀 Insuficiente</option>
+            </select>
           </div>
-          <input type="range" id="descanso" min="1" max="10" value="7" class="slider-sage"
-                 oninput="updateSlider(this,'restVal','sage')">
-          <div class="flex justify-between mt-1.5">
-            <span class="text-xs" style="color:var(--muted)">🥀 Agotado</span>
-            <span class="text-xs" style="color:var(--muted)">🌿 Renovado</span>
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- Excesos -->
-        <div>
-          <div class="flex justify-between items-center mb-2.5">
-            <div>
-              <p class="text-sm font-medium">Comidas libres · Alcohol</p>
-              <p class="text-xs italic mt-0.5" style="color:var(--muted)">Días en la semana</p>
-            </div>
-            <span class="text-sm font-bold" style="color:var(--rose)" id="excessVal">1</span>
-          </div>
-          <input type="range" id="excesos" min="0" max="7" value="1" class="slider-rose"
-                 oninput="updateSlider(this,'excessVal','rose')">
-          <div class="flex justify-between mt-1.5">
-            <span class="text-xs" style="color:var(--muted)">🍃 Ninguno</span>
-            <span class="text-xs" style="color:var(--muted)">🍷 Toda la semana</span>
+          <div>
+            <label class="text-xs block mb-1.5" style="color:var(--muted)">Energía / Fatiga (1-5)</label>
+            <select id="energia" class="w-full p-2.5 text-sm">
+              <option value="5">5 — A tope ⚡</option>
+              <option value="4">4 — Buena energía ✨</option>
+              <option value="3">3 — Normal 🌤️</option>
+              <option value="2">2 — Cansada ☁️</option>
+              <option value="1">1 — Agotada 🥀</option>
+            </select>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Notas -->
+    <!-- BLOQUE 3: ENTRENAMIENTO -->
+    <div class="glass p-5 mb-3">
+      <p class="section-label">🏃 Registro de Entrenamiento</p>
+      <div class="space-y-4">
+        <div>
+          <label class="text-xs block mb-1.5" style="color:var(--muted)">Actividad principal destacada</label>
+          <select id="tipoEntreno" class="w-full p-2.5 text-sm">
+            <option value="Nada">⚪ Nada</option>
+            <option value="Caminar en asfalto">🚶 Caminar en asfalto</option>
+            <option value="Correr en asfalto">🏃 Correr en asfalto</option>
+            <option value="Senderismo montaña">🌲 Senderismo montaña</option>
+            <option value="Correr por montaña">🏔️ Correr por montaña</option>
+            <option value="Fuerza">🏋️ Fuerza / Gimnasio</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-xs block mb-2" style="color:var(--muted)">¿Cómo se ha sentido el entrenamiento?</label>
+          <div class="flex justify-around items-center bg-[rgba(255,255,255,0.02)] p-2 rounded-xl border border-[rgba(229,193,177,0.06)]">
+            <button type="button" class="emoji-btn" id="emojiSad" onclick="setEmoji('Triste/Duro')">😭</button>
+            <button type="button" class="emoji-btn" id="emojiNormal" onclick="setEmoji('Normal/Ok')">😐</button>
+            <button type="button" class="emoji-btn" id="emojiHappy" onclick="setEmoji('Feliz/Fluido')">😊</button>
+          </div>
+        </div>
+        <div>
+          <label class="text-xs block mb-1.5" style="color:var(--muted)">Comentarios concretos de las sesiones</label>
+          <textarea id="notasEntreno" rows="2" placeholder="Ej: Buenas marcas en sentadilla / Ritmo alegre en subida..." class="w-full px-3 py-2 text-sm"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOQUE 4: INFLAMACIONES Y ALERTAS -->
+    <div class="glass p-5 mb-3">
+      <p class="section-label">🥑 Nutrición e Inflamaciones</p>
+      <p class="text-xs font-semibold mb-2" style="color:var(--gold)">Digestiva / Nutricional:</p>
+      <div class="grid grid-cols-2 gap-2 mb-4">
+        <button type="button" class="btn-check inf-digestiva" data-val="Hinchazón/Gases" onclick="toggleActive(this)">💨 Hinchazón</button>
+        <button type="button" class="btn-check inf-digestiva" data-val="Pesadez/Dolor de tripa" onclick="toggleActive(this)">⚡ Dolor tripa</button>
+        <button type="button" class="btn-check inf-digestiva" data-val="Ir regular al baño" onclick="toggleActive(this)">🚽 Ir regular</button>
+        <button type="button" class="btn-check inf-digestiva" data-val="Digestión pesada" onclick="toggleActive(this)">🤢 Mala digestión</button>
+      </div>
+      <div class="divider"></div>
+      <p class="text-xs font-semibold mb-2" style="color:var(--sage)">Física / Funcional:</p>
+      <div class="grid grid-cols-2 gap-2 mb-3">
+        <button type="button" class="btn-check inf-fisica" data-val="Agujetas intensas" onclick="toggleActive(this)">💥 Agujetas top</button>
+        <button type="button" class="btn-check inf-fisica" data-val="Molestia rodilla" onclick="toggleActive(this)">🦵 Rodilla</button>
+        <button type="button" class="btn-check inf-fisica" data-val="Molestia tobillo/tendón" onclick="toggleActive(this)">🦶 Tobillo</button>
+        <button type="button" class="btn-check inf-fisica" data-val="Sobrecarga espalda/trapecio" onclick="toggleActive(this)">🛡️ Espalda/Cuello</button>
+      </div>
+      <div class="mt-3">
+        <button type="button" id="infOtroBtn" class="w-full btn-check" onclick="toggleOtroField()">
+          🔍 Otra molestia o síntoma nuevo...
+        </button>
+        <div id="otroEspecificarWrapper" class="hidden mt-2">
+          <input type="text" id="infOtroEspecificar" placeholder="¿Qué notas? Ej: Ampolla talón..." class="w-full p-2.5 text-sm">
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOQUE 5: NOTAS GENERALES -->
     <div class="glass p-5 mb-5">
-      <p class="section-label">🍂 Notas y molestias</p>
-      <textarea id="notas" rows="2"
-        placeholder="Molestia leve en rodilla al bajar pendientes, tensión en trapecio..."
-        class="w-full px-3 py-2.5"></textarea>
+      <p class="section-label">🍂 Bitácora de Aventuras (Texto Libre)</p>
+      <textarea id="notasGenerales" rows="2" placeholder="Cualquier otra sensación subjetiva de la semana, estrés del trabajo..." class="w-full px-3 py-2.5"></textarea>
     </div>
 
-    <!-- Submit -->
     <button type="submit" class="btn-submit" id="submitBtn">
-      ✦ Iniciar análisis de la semana
+      ✦ Guardar datos de la semana
     </button>
-
   </form>
-
-  <!-- AI Result -->
-  <div class="result-card glass p-5 mt-4" id="resultCard">
-    <div class="flex items-start justify-between mb-3">
-      <div>
-        <p class="section-label">✨ Tu planificación mágica</p>
-        <span id="scenarioBadge" class="badge"></span>
-      </div>
-      <span class="text-xl">🌄</span>
-    </div>
-
-    <div class="divider"></div>
-
-    <h3 class="text-base font-bold mb-2" style="color:var(--cream)" id="scenarioTitle"></h3>
-    <p class="text-sm leading-relaxed mb-1" style="color:rgba(250,246,240,.75)" id="scenarioDesc"></p>
-
-    <div id="scenarioPlan" class="mt-3"></div>
-  </div>
-
 </div>
 
 <script>
+// URL de Google Apps Script vinculada de forma exacta
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbybkoY2wsI9pxO5pXZAfAUHzoaUz-wQr4sJeao9efjySrVzeY5axk-BlYh16QOG6xbVtg/exec";
 
-// ── Floating stars ──
-(function() {
-  const c = document.getElementById('starsContainer');
-  for (let i = 0; i < 28; i++) {
-    const s = document.createElement('div');
-    s.className = 'star';
-    const size = Math.random() * 2.5 + 1;
-    s.style.cssText = `
-      width:${size}px; height:${size}px;
-      top:${Math.random()*100}%; left:${Math.random()*100}%;
-      --d:${(Math.random()*5+3).toFixed(1)}s;
-      --delay:${(Math.random()*6).toFixed(1)}s;
-      --op:${(Math.random()*.3+.1).toFixed(2)};
-    `;
-    c.appendChild(s);
-  }
-})();
+let valoracionEntreno = "Sin valorar";
 
-// ── Week label ──
 const now = new Date();
 const ws = new Date(now); ws.setDate(now.getDate() - now.getDay() + 1);
 const we = new Date(ws);  we.setDate(ws.getDate() + 6);
 const fmt = d => d.toLocaleDateString('es-ES', { day:'numeric', month:'short' });
 document.getElementById('weekLabel').textContent = `Semana ${fmt(ws)} – ${fmt(we)}`;
 
-// ── Slider update ──
-function updateSlider(el, valId, type) {
-  const pct = ((el.value - el.min) / (el.max - el.min) * 100).toFixed(1) + '%';
-  el.style.setProperty('--pct', pct);
-  document.getElementById(valId).textContent = el.value;
-}
-// Inicialización estética de los sliders
-updateSlider(document.getElementById('estres'), 'stressVal', 'gold');
-updateSlider(document.getElementById('descanso'), 'restVal', 'sage');
-updateSlider(document.getElementById('excesos'), 'excessVal', 'rose');
+function toggleActive(element) { element.classList.toggle('active'); }
 
-// ── Submit ──
+function setEmoji(val) {
+  valoracionEntreno = val;
+  document.querySelectorAll('.emoji-btn').forEach(btn => btn.classList.remove('active'));
+  if(val === 'Triste/Duro') document.getElementById('emojiSad').classList.add('active');
+  if(val === 'Normal/Ok') document.getElementById('emojiNormal').classList.add('active');
+  if(val === 'Feliz/Fluido') document.getElementById('emojiHappy').classList.add('active');
+}
+
+function toggleOtroField() {
+  const btn = document.getElementById('infOtroBtn');
+  const wrapper = document.getElementById('otroEspecificarWrapper');
+  btn.classList.toggle('active');
+  if (btn.classList.contains('active')) {
+    wrapper.classList.remove('hidden');
+    document.getElementById('infOtroEspecificar').focus();
+  } else {
+    wrapper.classList.add('hidden');
+    document.getElementById('infOtroEspecificar').value = '';
+  }
+}
+
+function getSelectedItems(className) {
+  const items = [];
+  document.querySelectorAll(className + '.active').forEach(btn => {
+    if (btn.getAttribute('data-val')) items.push(btn.getAttribute('data-val'));
+  });
+  return items.join(', ');
+}
+
 async function handleSubmit(e) {
   e.preventDefault();
   const btn = document.getElementById('submitBtn');
   btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span> Guardando en el diario…';
+  btn.innerHTML = '<span class="spinner"></span> Registrando en Sheets…';
+
+  let inflamacionOtro = "";
+  if (document.getElementById('infOtroBtn').classList.contains('active')) {
+    inflamacionOtro = document.getElementById('infOtroEspecificar').value;
+  }
+
+  const pesoKg = parseFloat(document.getElementById('peso').value);
+  const alturaCm = parseFloat(document.getElementById('altura').value);
+  let imcCalculado = "";
+  if(pesoKg && alturaCm) {
+    imcCalculado = (pesoKg / ((alturaCm / 100) * (alturaCm / 100))).toFixed(2);
+  }
 
   const data = {
-    fecha:   new Date().toISOString(),
-    peso:    document.getElementById('peso').value || '',
-    imc:     document.getElementById('imc').value || '',
-    grasa:   document.getElementById('grasa').value || '',
-    musculo: document.getElementById('musculo').value || '',
-    estres:  parseInt(document.getElementById('estres').value),
-    descanso:parseInt(document.getElementById('descanso').value),
-    excesos: parseInt(document.getElementById('excesos').value),
-    notas:   document.getElementById('notas').value
+    fecha:                 new Date().toISOString(),
+    peso:                  pesoKg,
+    imc:                   imcCalculado,
+    porcentaje_grasa:      document.getElementById('grasa').value || "",
+    porcentaje_musculo:    document.getElementById('musculo').value || "",
+    menstruacion:          document.getElementById('menstruacionBtn').classList.contains('active') ? "SÍ" : "NO",
+    sueno_calidad:         document.getElementById('sueno').value,
+    energia_fatiga:        document.getElementById('energia').value,
+    tipo_entrenamiento:    document.getElementById('tipoEntreno').value,
+    valoracion_entreno:    valoracionEntreno,
+    notas_entrenamiento:   document.getElementById('notasEntreno').value,
+    inflamacion_digestiva: getSelectedItems('.inf-digestiva'),
+    inflamacion_fisica:    getSelectedItems('.inf-fisica'),
+    inflamacion_otro:      inflamacionOtro,
+    notas_generales:       document.getElementById('notasGenerales').value
   };
 
+  let fraseRecibida = "¡Tu diario ha sido actualizado con éxito! Sigue sumando.";
+
   try {
-    await fetch(GOOGLE_SCRIPT_URL, {
-      method:'POST', mode:'no-cors',
-      headers:{'Content-Type':'application/json'},
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
       body: JSON.stringify(data)
     });
-  } catch(_) {}
+    
+    if (response.ok) {
+      const resData = await response.json();
+      if (resData && resData.frase) {
+        fraseRecibida = resData.frase;
+      }
+    }
+  } catch(err) {
+    console.log("Error leyendo respuesta de Apps Script", err);
+  }
 
   btn.innerHTML = '🌿 ¡Guardado con éxito!';
   btn.style.background = 'linear-gradient(135deg, rgba(156,182,159,.85) 0%, rgba(120,160,124,.75) 100%)';
 
   setTimeout(() => {
-    showAI(data);
     btn.disabled = false;
-    btn.innerHTML = '✦ Iniciar análisis de la semana';
+    btn.innerHTML = '✦ Guardar datos de la semana';
     btn.style.background = '';
-  }, 1300);
-}
-
-// ── AI scenarios ──
-function showAI(data) {
-  const { estres, descanso, excesos } = data;
-  const card  = document.getElementById('resultCard');
-  const badge = document.getElementById('scenarioBadge');
-  const title = document.getElementById('scenarioTitle');
-  const desc  = document.getElementById('scenarioDesc');
-  const plan  = document.getElementById('scenarioPlan');
-
-  let sc;
-
-  if (estres >= 8 || descanso <= 4) {
-    sc = {
-      badgeClass: 'badge-critical',
-      label: '🌸 Pausa en el Camino',
-      title: 'Protocolo de Autocuidado',
-      desc: 'El cuerpo también necesita su invierno para volver a florecer. Esta semana bajamos la intensidad al 60% para proteger tu energía. Cambiamos las series duras por un trekking suave o una caminata tranquila por la montaña para reconectar y despejar la mente.',
-      items: [
-        { icon: '🏋️', text: 'Gimnasio al 60% de carga — mismas series, peso reducido. Deja que la técnica sea la protagonista.' },
-        { icon: '🌲', text: 'Olvida las series de montaña. Un trekking tranquilo o una caminata al aire libre hará más bien a tu sistema nervioso que cualquier entrenamiento duro.' },
-        { icon: '🌙', text: 'El sueño es tu superpoder esta semana: apunta a 8h+, pantallas fuera 1h antes, y 10 minutos de respiración profunda al despertar.' },
-        { icon: '🍵', text: 'Una taza de té, un paseo al atardecer y sin culpas. Descansar bien también es entrenar.' }
-      ]
-    };
-  } else if (excesos >= 3) {
-    sc = {
-      badgeClass: 'badge-inflam',
-      label: '🌼 Equilibrio y Cuidado',
-      title: 'Enfoque de Equilibrio y Cuidado',
-      desc: 'Disfrutar también es parte de la vida. Mantén tus entrenamientos de fuerza, pero sé amable con tu cuerpo en la montaña y prioriza una buena hidratación para rendir sin pesadez.',
-      items: [
-        { icon: '🏋️', text: 'Fuerza con cargas habituales — no añadas volumen extra, simplemente mantén el ritmo que traes.' },
-        { icon: '🍃', text: 'Trail a ritmos cómodos y conversacionales. La pesadez muscular por inflamación aumenta el riesgo en las bajadas técnicas.' },
-        { icon: '💧', text: 'Hidratación crítica en montaña: añade siempre 500ml más de lo habitual a tu mochila. Tu cuerpo lo agradecerá.' },
-        { icon: '🫐', text: 'Antiinflamatorios naturales esta semana: berries, cúrcuma, jengibre y omega-3. Más potentes que cualquier suplemento.' }
-      ]
-    };
-  } else if (estres <= 4 && descanso >= 7 && excesos <= 1) {
-    sc = {
-      badgeClass: 'badge-optimal',
-      label: '✨ Luz Verde Total',
-      title: 'Bloque de Rendimiento y Fuerza',
-      desc: '¡Tu energía está al máximo! Es el momento perfecto para buscar tu mejor versión: sube cargas en tus sesiones de fuerza en el gimnasio y busca ritmos alegres en tus tiradas de trail running en la montaña. ¡A por todas!',
-      items: [
-        { icon: '⚔️', text: 'Sube cargas en tus ejercicios principales: +2,5-5kg en press y sentadilla. Añade 1 serie extra si el cuerpo te lo pide.' },
-        { icon: '🏔️', text: 'Series explosivas en montaña: fartlek en repecho (6x2min al 85-90%) o una tirada larga con 1000m+ de desnivel. Tu mejor semana de trail.' },
-        { icon: '⚡', text: 'Incluye una sesión de potencia: saltos al cajón, skipping o sprints de 8-10seg para despertar el sistema neuromuscular.' },
-        { icon: '📖', text: 'Anota tus marcas hoy — estás en el punto álgido. Los datos de esta semana serán tu referencia para el futuro.' }
-      ]
-    };
-  } else {
-    sc = {
-      badgeClass: 'badge-standard',
-      label: '🌿 Sendero Constante',
-      title: 'Progresión Lineal y Equilibrada',
-      desc: 'Todo fluye en orden. Esta semana seguimos construyendo con paciencia — la constancia es la magia más poderosa que existe.',
-      items: [
-        { icon: '🏋️', text: 'Cargas habituales en el gimnasio. Si llevas 2-3 semanas igual en algún ejercicio, prueba +1,25kg y observa cómo responde el cuerpo.' },
-        { icon: '🌄', text: 'Trail de volumen cómodo: 1 salida larga en Zona 2 y 1 sesión media con desnivel moderado. Sin forzar el ritmo.' },
-        { icon: '🧘', text: 'Añade 10 min de movilidad post-entreno — caderas, tobillos y hombros. Una pequeña magia diaria con gran impacto en la montaña.' },
-        { icon: '🍃', text: 'Semana ideal para pulir detalles técnicos: la bajada, el paso de pies en terreno inestable, o el control de la sentadilla profunda.' }
-      ]
-    };
-  }
-
-  badge.className = `badge ${sc.badgeClass}`;
-  badge.textContent = sc.label;
-  title.textContent = sc.title;
-  desc.textContent  = sc.desc;
-
-  plan.innerHTML = sc.items.map(item => `
-    <div class="plan-item">
-      <div class="plan-icon">${item.icon}</div>
-      <p class="text-sm leading-relaxed" style="color:rgba(250,246,240,.78)">${item.text}</p>
-    </div>
-  `).join('');
-
-  card.classList.add('result-card','visible');
-  setTimeout(() => card.scrollIntoView({ behavior:'smooth', block:'start' }), 120);
+    
+    // Muestra la píldora estoica / motivadora enviada desde tu Sheets
+    alert(fraseRecibida);
+    
+    document.getElementById('checkinForm').reset();
+    document.querySelectorAll('.btn-check').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('otroEspecificarWrapper').classList.add('hidden');
+    valoracionEntreno = "Sin valorar";
+  }, 1000);
 }
 </script>
 </body>
