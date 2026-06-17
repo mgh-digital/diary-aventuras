@@ -11,14 +11,14 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   :root {
-    --bg:        #0e0912;
-    --cream:     #faf6f0;
-    --rose:      #e8a7b6;
-    --gold:      #e5c1b1;
-    --sage:      #9cb69f;
-    --card-bg:   rgba(42, 22, 38, 0.52);
+    --bg:         #0e0912;
+    --cream:      #faf6f0;
+    --rose:       #e8a7b6;
+    --gold:       #e5c1b1;
+    --sage:       #9cb69f;
+    --card-bg:    rgba(42, 22, 38, 0.52);
     --card-border: rgba(229, 193, 177, 0.13);
-    --muted:     rgba(250, 246, 240, 0.38);
+    --muted:      rgba(250, 246, 240, 0.38);
   }
 
   * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
@@ -324,7 +324,7 @@
 </div>
 
 <script>
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbybkoY2wsI9pxO5pXZAfAUHzoaUz-wQr4sJeao9efjySrVzeY5axk-BlYH16QOG6xbVtg/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbybkoY2wsI9pxO5pXZAfAUHzoaUz-wQr4sJeao9efjySrVzeY5axk-BlYh16QOG6xbVtg/exec";
 
 // ── Floating stars ──
 (function() {
@@ -357,9 +357,10 @@ function updateSlider(el, valId, type) {
   el.style.setProperty('--pct', pct);
   document.getElementById(valId).textContent = el.value;
 }
-[['estres','stressVal'],['descanso','restVal'],['excesos','excessVal']].forEach(([id, v]) => {
-  updateSlider(document.getElementById(id), v, '');
-});
+// Inicialización estética de los sliders
+updateSlider(document.getElementById('estres'), 'stressVal', 'gold');
+updateSlider(document.getElementById('descanso'), 'restVal', 'sage');
+updateSlider(document.getElementById('excesos'), 'excessVal', 'rose');
 
 // ── Submit ──
 async function handleSubmit(e) {
@@ -443,9 +444,9 @@ function showAI(data) {
       title: 'Bloque de Rendimiento y Fuerza',
       desc: '¡Tu energía está al máximo! Es el momento perfecto para buscar tu mejor versión: sube cargas en tus sesiones de fuerza en el gimnasio y busca ritmos alegres en tus tiradas de trail running en la montaña. ¡A por todas!',
       items: [
-        { icon: '⚔️', text: 'Sube cargas en tus ejercicios principales: +2,5–5kg en press y sentadilla. Añade 1 serie extra si el cuerpo te lo pide.' },
-        { icon: '🏔️', text: 'Series explosivas en montaña: fartlek en repecho (6×2min al 85–90%) o una tirada larga con 1000m+ de desnivel. Tu mejor semana de trail.' },
-        { icon: '⚡', text: 'Incluye una sesión de potencia: saltos al cajón, skipping o sprints de 8–10seg para despertar el sistema neuromuscular.' },
+        { icon: '⚔️', text: 'Sube cargas en tus ejercicios principales: +2,5-5kg en press y sentadilla. Añade 1 serie extra si el cuerpo te lo pide.' },
+        { icon: '🏔️', text: 'Series explosivas en montaña: fartlek en repecho (6x2min al 85-90%) o una tirada larga con 1000m+ de desnivel. Tu mejor semana de trail.' },
+        { icon: '⚡', text: 'Incluye una sesión de potencia: saltos al cajón, skipping o sprints de 8-10seg para despertar el sistema neuromuscular.' },
         { icon: '📖', text: 'Anota tus marcas hoy — estás en el punto álgido. Los datos de esta semana serán tu referencia para el futuro.' }
       ]
     };
@@ -456,7 +457,7 @@ function showAI(data) {
       title: 'Progresión Lineal y Equilibrada',
       desc: 'Todo fluye en orden. Esta semana seguimos construyendo con paciencia — la constancia es la magia más poderosa que existe.',
       items: [
-        { icon: '🏋️', text: 'Cargas habituales en el gimnasio. Si llevas 2–3 semanas igual en algún ejercicio, prueba +1,25kg y observa cómo responde el cuerpo.' },
+        { icon: '🏋️', text: 'Cargas habituales en el gimnasio. Si llevas 2-3 semanas igual en algún ejercicio, prueba +1,25kg y observa cómo responde el cuerpo.' },
         { icon: '🌄', text: 'Trail de volumen cómodo: 1 salida larga en Zona 2 y 1 sesión media con desnivel moderado. Sin forzar el ritmo.' },
         { icon: '🧘', text: 'Añade 10 min de movilidad post-entreno — caderas, tobillos y hombros. Una pequeña magia diaria con gran impacto en la montaña.' },
         { icon: '🍃', text: 'Semana ideal para pulir detalles técnicos: la bajada, el paso de pies en terreno inestable, o el control de la sentadilla profunda.' }
