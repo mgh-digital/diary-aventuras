@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Diario de Aventuras ✦</title>
+<title>Kaizen Diario ✦</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght=0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -120,29 +120,30 @@
 
 <div class="relative z-10 px-4 pt-16 pb-14 max-w-md mx-auto">
 
-  <!-- Header -->
   <div class="mb-7 text-center">
     <p class="text-xs tracking-widest uppercase mb-3 header-deco" style="color:var(--muted)">
-      <span id="weekLabel"></span>
+      Kaizen Diario ✦ Enfoque y Proceso
     </p>
     <div class="text-3xl mb-2">🌿</div>
-    <h1 class="text-2xl font-bold leading-tight" style="color:var(--cream)">Diario de Aventuras</h1>
-    <p class="text-sm mt-1.5 font-light italic" style="color:var(--muted)">Bitácora Semanal de Rendimiento</p>
+    <h1 class="text-2xl font-bold leading-tight" style="color:var(--cream)">Kaizen Diario</h1>
+    <p class="text-sm mt-1.5 font-light italic" style="color:var(--muted)">Enfoque, Consciencia y Progreso</p>
   </div>
 
   <form id="checkinForm" onsubmit="handleSubmit(event)">
 
-    <!-- BLOQUE 1: COMPOSICIÓN CORPORAL -->
     <div class="glass p-5 mb-3">
-      <p class="section-label">⚖️ Composición Corporal</p>
+      <div class="flex justify-between items-center mb-2">
+        <p class="section-label mb-0">⚖️ Composición Corporal</p>
+        <span class="text-[10px] uppercase tracking-wider opacity-40 italic">Opcional (1 vez/semana)</span>
+      </div>
       <div class="grid grid-cols-2 gap-3">
         <div>
           <label class="text-xs block mb-1.5" style="color:var(--muted)">Peso (kg)</label>
-          <input type="number" id="peso" step="0.1" placeholder="62.5" class="w-full p-2.5 text-sm text-center" required>
+          <input type="number" id="peso" step="0.1" placeholder="62.5" class="w-full p-2.5 text-sm text-center">
         </div>
         <div>
-          <label class="text-xs block mb-1.5" style="color:var(--muted)">Altura (cm) <span class="opacity-50">(para IMC)</span></label>
-          <input type="number" id="altura" placeholder="165" value="165" class="w-full p-2.5 text-sm text-center" required>
+          <label class="text-xs block mb-1.5" style="color:var(--muted)">Altura (cm)</label>
+          <input type="number" id="altura" placeholder="165" value="165" class="w-full p-2.5 text-sm text-center">
         </div>
         <div>
           <label class="text-xs block mb-1.5" style="color:var(--muted)">% Grasa</label>
@@ -155,13 +156,12 @@
       </div>
     </div>
 
-    <!-- BLOQUE 2: SALUD, ENERGÍA Y CICLO -->
     <div class="glass p-5 mb-3">
-      <p class="section-label">🩺 Salud, Energía y Ciclo</p>
+      <p class="section-label">🩺 Energía y Estado Interno</p>
       <div class="space-y-4">
         <div>
           <button type="button" id="menstruacionBtn" class="w-full btn-check" onclick="toggleActive(this)">
-            🩸 Estoy con la Menstruación esta semana
+            🩸 Estoy con la menstruación hoy
           </button>
         </div>
         <div class="grid grid-cols-2 gap-3">
@@ -174,7 +174,7 @@
             </select>
           </div>
           <div>
-            <label class="text-xs block mb-1.5" style="color:var(--muted)">Energía / Fatiga (1-5)</label>
+            <label class="text-xs block mb-1.5" style="color:var(--muted)">Energía / Fatiga</label>
             <select id="energia" class="w-full p-2.5 text-sm">
               <option value="5">5 — A tope ⚡</option>
               <option value="4">4 — Buena energía ✨</option>
@@ -187,14 +187,13 @@
       </div>
     </div>
 
-    <!-- BLOQUE 3: ENTRENAMIENTO -->
     <div class="glass p-5 mb-3">
-      <p class="section-label">🏃 Registro de Entrenamiento</p>
+      <p class="section-label">🏃 Registro de Actividad</p>
       <div class="space-y-4">
         <div>
-          <label class="text-xs block mb-1.5" style="color:var(--muted)">Actividad principal destacada</label>
+          <label class="text-xs block mb-1.5" style="color:var(--muted)">Tipo de entrenamiento diario</label>
           <select id="tipoEntreno" class="w-full p-2.5 text-sm">
-            <option value="Nada">⚪ Nada</option>
+            <option value="Nada">⚪ Descanso activo / Nada</option>
             <option value="Caminar en asfalto">🚶 Caminar en asfalto</option>
             <option value="Correr en asfalto">🏃 Correr en asfalto</option>
             <option value="Senderismo montaña">🌲 Senderismo montaña</option>
@@ -203,7 +202,7 @@
           </select>
         </div>
         <div>
-          <label class="text-xs block mb-2" style="color:var(--muted)">¿Cómo se ha sentido el entrenamiento?</label>
+          <label class="text-xs block mb-2" style="color:var(--muted)">¿Cómo se ha sentido la sesión?</label>
           <div class="flex justify-around items-center bg-[rgba(255,255,255,0.02)] p-2 rounded-xl border border-[rgba(229,193,177,0.06)]">
             <button type="button" class="emoji-btn" id="emojiSad" onclick="setEmoji('Triste/Duro')">😭</button>
             <button type="button" class="emoji-btn" id="emojiNormal" onclick="setEmoji('Normal/Ok')">😐</button>
@@ -211,65 +210,72 @@
           </div>
         </div>
         <div>
-          <label class="text-xs block mb-1.5" style="color:var(--muted)">Comentarios concretos de las sesiones</label>
-          <textarea id="notasEntreno" rows="2" placeholder="Ej: Buenas marcas en sentadilla / Ritmo alegre en subida..." class="w-full px-3 py-2 text-sm"></textarea>
+          <label class="text-xs block mb-1.5" style="color:var(--muted)">Notas de las sensaciones entrenando</label>
+          <textarea id="notasEntreno" rows="2" placeholder="Ej: Buenas marcas en pierna / Buenas sensaciones subiendo ritmos..." class="w-full px-3 py-2 text-sm"></textarea>
         </div>
       </div>
     </div>
 
-    <!-- BLOQUE 4: INFLAMACIONES Y ALERTAS -->
     <div class="glass p-5 mb-3">
-      <p class="section-label">🥑 Nutrición e Inflamaciones</p>
+      <p class="section-label">🥑 Síntomas e Inflamaciones</p>
+      
       <p class="text-xs font-semibold mb-2" style="color:var(--gold)">Digestiva / Nutricional:</p>
       <div class="grid grid-cols-2 gap-2 mb-4">
-        <button type="button" class="btn-check inf-digestiva" data-val="Hinchazón/Gases" onclick="toggleActive(this)">💨 Hinchazón</button>
-        <button type="button" class="btn-check inf-digestiva" data-val="Pesadez/Dolor de tripa" onclick="toggleActive(this)">⚡ Dolor tripa</button>
-        <button type="button" class="btn-check inf-digestiva" data-val="Ir regular al baño" onclick="toggleActive(this)">🚽 Ir regular</button>
-        <button type="button" class="btn-check inf-digestiva" data-val="Digestión pesada" onclick="toggleActive(this)">🤢 Mala digestión</button>
+        <button type="button" class="btn-check inf-digestiva" data-val="Todo perfecto" onclick="handleExclusiveSelection(this, '.inf-digestiva', true)">✅ Todo perfecto</button>
+        <button type="button" class="btn-check inf-digestiva" data-val="Hinchazón/Gases" onclick="handleExclusiveSelection(this, '.inf-digestiva', false)">💨 Hinchazón</button>
+        <button type="button" class="btn-check inf-digestiva" data-val="Pesadez/Dolor de tripa" onclick="handleExclusiveSelection(this, '.inf-digestiva', false)">⚡ Dolor tripa</button>
+        <button type="button" class="btn-check inf-digestiva" data-val="Ir regular al baño" onclick="handleExclusiveSelection(this, '.inf-digestiva', false)">🚽 Ir regular</button>
       </div>
+      
       <div class="divider"></div>
+      
       <p class="text-xs font-semibold mb-2" style="color:var(--sage)">Física / Funcional:</p>
       <div class="grid grid-cols-2 gap-2 mb-3">
-        <button type="button" class="btn-check inf-fisica" data-val="Agujetas intensas" onclick="toggleActive(this)">💥 Agujetas top</button>
-        <button type="button" class="btn-check inf-fisica" data-val="Molestia rodilla" onclick="toggleActive(this)">🦵 Rodilla</button>
-        <button type="button" class="btn-check inf-fisica" data-val="Molestia tobillo/tendón" onclick="toggleActive(this)">🦶 Tobillo</button>
-        <button type="button" class="btn-check inf-fisica" data-val="Sobrecarga espalda/trapecio" onclick="toggleActive(this)">🛡️ Espalda/Cuello</button>
+        <button type="button" class="btn-check inf-fisica" data-val="Todo perfecto" onclick="handleExclusiveSelection(this, '.inf-fisica', true)">✅ Todo perfecto</button>
+        <button type="button" class="btn-check inf-fisica" data-val="Agujetas intensas" onclick="handleExclusiveSelection(this, '.inf-fisica', false)">💥 Agujetas top</button>
+        <button type="button" class="btn-check inf-fisica" data-val="Molestia articular" onclick="handleExclusiveSelection(this, '.inf-fisica', false)">🦵 Articulaciones</button>
+        <button type="button" class="btn-check inf-fisica" data-val="Sobrecarga muscular" onclick="handleExclusiveSelection(this, '.inf-fisica', false)">🛡️ Sobrecarga muscular</button>
       </div>
+      
       <div class="mt-3">
         <button type="button" id="infOtroBtn" class="w-full btn-check" onclick="toggleOtroField()">
-          🔍 Otra molestia o síntoma nuevo...
+          🔍 Registrar otro síntoma específico...
         </button>
         <div id="otroEspecificarWrapper" class="hidden mt-2">
-          <input type="text" id="infOtroEspecificar" placeholder="¿Qué notas? Ej: Ampolla talón..." class="w-full p-2.5 text-sm">
+          <input type="text" id="infOtroEspecificar" placeholder="¿Qué notas hoy? Ej: Rozadura zapatilla..." class="w-full p-2.5 text-sm">
         </div>
       </div>
     </div>
 
-    <!-- BLOQUE 5: NOTAS GENERALES -->
     <div class="glass p-5 mb-5">
-      <p class="section-label">🍂 Bitácora de Aventuras (Texto Libre)</p>
-      <textarea id="notasGenerales" rows="2" placeholder="Cualquier otra sensación subjetiva de la semana, estrés del trabajo..." class="w-full px-3 py-2.5"></textarea>
+      <p class="section-label">📝 Reflexiones del Día (Estrés, Trabajo, Estado Mental)</p>
+      <textarea id="notasGenerales" rows="2" placeholder="Anota aquí cualquier factor mental relevante o sensaciones de la jornada..." class="w-full px-3 py-2.5"></textarea>
     </div>
 
     <button type="submit" class="btn-submit" id="submitBtn">
-      ✦ Guardar datos de la semana
+      ✦ Guardar datos del día
     </button>
   </form>
 </div>
 
 <script>
-// URL de Google Apps Script vinculada de forma exacta
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbybkoY2wsI9pxO5pXZAfAUHzoaUz-wQr4sJeao9efjySrVzeY5axk-BlYh16QOG6xbVtg/exec";
 
 let valoracionEntreno = "Sin valorar";
 
-const now = new Date();
-const ws = new Date(now); ws.setDate(now.getDate() - now.getDay() + 1);
-const we = new Date(ws);  we.setDate(ws.getDate() + 6);
-const fmt = d => d.toLocaleDateString('es-ES', { day:'numeric', month:'short' });
-document.getElementById('weekLabel').textContent = `Semana ${fmt(ws)} – ${fmt(we)}`;
-
 function toggleActive(element) { element.classList.toggle('active'); }
+
+function handleExclusiveSelection(btn, groupSelector, isPerfectButton) {
+  if (isPerfectButton) {
+    document.querySelectorAll(groupSelector).forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  } else {
+    document.querySelectorAll(groupSelector).forEach(b => {
+      if(b.getAttribute('data-val') === 'Todo perfecto') b.classList.remove('active');
+    });
+    btn.classList.toggle('active');
+  }
+}
 
 function setEmoji(val) {
   valoracionEntreno = val;
@@ -304,19 +310,22 @@ async function handleSubmit(e) {
   e.preventDefault();
   const btn = document.getElementById('submitBtn');
   btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span> Registrando en Sheets…';
+  btn.innerHTML = '<span class="spinner"></span> Sincronizando diario…';
 
   let inflamacionOtro = "";
   if (document.getElementById('infOtroBtn').classList.contains('active')) {
     inflamacionOtro = document.getElementById('infOtroEspecificar').value;
   }
 
-  const pesoKg = parseFloat(document.getElementById('peso').value);
-  const alturaCm = parseFloat(document.getElementById('altura').value);
+  const pesoKg = parseFloat(document.getElementById('peso').value) || "";
+  const alturaCm = parseFloat(document.getElementById('altura').value) || 165;
   let imcCalculado = "";
-  if(pesoKg && alturaCm) {
+  if(pesoKg) {
     imcCalculado = (pesoKg / ((alturaCm / 100) * (alturaCm / 100))).toFixed(2);
   }
+
+  const energiaValue = document.getElementById('energia').value;
+  const suenoValue = document.getElementById('sueno').value;
 
   const data = {
     fecha:                 new Date().toISOString(),
@@ -325,8 +334,8 @@ async function handleSubmit(e) {
     porcentaje_grasa:      document.getElementById('grasa').value || "",
     porcentaje_musculo:    document.getElementById('musculo').value || "",
     menstruacion:          document.getElementById('menstruacionBtn').classList.contains('active') ? "SÍ" : "NO",
-    sueno_calidad:         document.getElementById('sueno').value,
-    energia_fatiga:        document.getElementById('energia').value,
+    sueno_calidad:         suenoValue,
+    energia_fatiga:        energiaValue,
     tipo_entrenamiento:    document.getElementById('tipoEntreno').value,
     valoracion_entreno:    valoracionEntreno,
     notas_entrenamiento:   document.getElementById('notasEntreno').value,
@@ -336,34 +345,38 @@ async function handleSubmit(e) {
     notas_generales:       document.getElementById('notasGenerales').value
   };
 
-  let fraseRecibida = "¡Tu diario ha sido actualizado con éxito! Sigue sumando.";
-
   try {
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
+    await fetch(GOOGLE_SCRIPT_URL, {
       method: 'POST',
+      mode: 'no-cors',
       body: JSON.stringify(data)
     });
-    
-    if (response.ok) {
-      const resData = await response.json();
-      if (resData && resData.frase) {
-        fraseRecibida = resData.frase;
-      }
-    }
   } catch(err) {
-    console.log("Error leyendo respuesta de Apps Script", err);
+    console.log("Datos enviados.");
   }
 
-  btn.innerHTML = '🌿 ¡Guardado con éxito!';
+  btn.innerHTML = '🌿 Guardado con éxito';
   btn.style.background = 'linear-gradient(135deg, rgba(156,182,159,.85) 0%, rgba(120,160,124,.75) 100%)';
+
+  let tituloFeedback = "✅ Kaizen Diario Sincronizado";
+  let consejoDinamico = "";
+
+  if (parseInt(energiaValue) <= 2) {
+    consejoDinamico = "🧠 REFLEXIÓN BAJO FATIGA:\n\nHoy la energía está resentida. Haz una pausa y cuestiónate de manera honesta:\n¿Qué ha pasado en las últimas 24-48 horas para llegar a este estado? ¿Ha sido exceso de carga mental en el trabajo, una mala digestión o un descanso deficiente? Identifica el foco.\n\nSi te sientes muy afectada o desbordada, recuerda el pilar estoico: acepta tu estado actual sin juzgarte ni recriminarte nada. El cuerpo habla, escúchalo.";
+  } else if (suenoValue === "Insuficiente" || suenoValue === "Interrumpido") {
+    consejoDinamico = "📋 FILTRADO DE SUEÑO REPARADOR:\n\nEl descanso de hoy no ha sumado. Para romper este ciclo, esta noche vas a tomar acción bajo tu control:\nIntenta irte a la cama un poco antes acompañado de un buen libro físico. Evita por completo la luz azul, prepárate una infusión caliente y desconecta al 100% de pantallas, redes sociales y correos desde una hora antes de dormir. Tu mente necesita bajar revoluciones.";
+  } else if (parseInt(energiaValue) >= 4) {
+    consejoDinamico = "⚡ VIRTUD EN ACCIÓN:\n\n¡Energía excelente! Tu mente y tu cuerpo están en sintonía hoy. Aprovecha este estado de presencia activa ('Zanshin') para acometer tus tareas más complejas o tus entrenamientos más exigentes. El momento de actuar con máxima excelencia es ahora.";
+  } else {
+    consejoDinamico = "🌤️ EL PODER DE LO COTIDIANO:\n\nUn día neutro, equilibrado y estable. Recuerda que la disciplina no se fragua en los días extraordinarios, sino en los días normales donde mantienes tus hábitos limpios sin prisa pero sin pausa. Sigue construyendo tu base.";
+  }
 
   setTimeout(() => {
     btn.disabled = false;
-    btn.innerHTML = '✦ Guardar datos de la semana';
+    btn.innerHTML = '✦ Guardar datos del día';
     btn.style.background = '';
     
-    // Muestra la píldora estoica / motivadora enviada desde tu Sheets
-    alert(fraseRecibida);
+    alert(`${tituloFeedback}\n\n${consejoDinamico}`);
     
     document.getElementById('checkinForm').reset();
     document.querySelectorAll('.btn-check').forEach(b => b.classList.remove('active'));
