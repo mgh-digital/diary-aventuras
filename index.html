@@ -142,8 +142,8 @@
           <input type="number" id="peso" step="0.1" placeholder="62.5" class="w-full p-2.5 text-sm text-center">
         </div>
         <div>
-          <label class="text-xs block mb-1.5" style="color:var(--muted)">Altura (cm)</label>
-          <input type="number" id="altura" placeholder="165" value="165" class="w-full p-2.5 text-sm text-center">
+          <label class="text-xs block mb-1.5" style="color:var(--muted)">IMC</label>
+          <input type="number" id="imc" step="0.01" placeholder="22.9" class="w-full p-2.5 text-sm text-center">
         </div>
         <div>
           <label class="text-xs block mb-1.5" style="color:var(--muted)">% Grasa</label>
@@ -317,12 +317,8 @@ async function handleSubmit(e) {
     inflamacionOtro = document.getElementById('infOtroEspecificar').value;
   }
 
-  const pesoKg = parseFloat(document.getElementById('peso').value) || "";
-  const alturaCm = parseFloat(document.getElementById('altura').value) || 165;
-  let imcCalculado = "";
-  if(pesoKg) {
-    imcCalculado = (pesoKg / ((alturaCm / 100) * (alturaCm / 100))).toFixed(2);
-  }
+  const pesoKg = document.getElementById('peso').value || "";
+  const imcManual = document.getElementById('imc').value || "";
 
   const energiaValue = document.getElementById('energia').value;
   const suenoValue = document.getElementById('sueno').value;
@@ -330,7 +326,7 @@ async function handleSubmit(e) {
   const data = {
     fecha:                 new Date().toISOString(),
     peso:                  pesoKg,
-    imc:                   imcCalculado,
+    imc:                   imcManual,
     porcentaje_grasa:      document.getElementById('grasa').value || "",
     porcentaje_musculo:    document.getElementById('musculo').value || "",
     menstruacion:          document.getElementById('menstruacionBtn').classList.contains('active') ? "SÍ" : "NO",
